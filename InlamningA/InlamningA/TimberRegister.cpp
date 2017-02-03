@@ -28,13 +28,18 @@ Timber& Timber::operator=(const Timber& eeh)
 	this->width = eeh.width;
 	this->length = eeh.length;
 	this->totalStock = eeh.totalStock;
-	this->getPricePerMeter = eeh.pricePerMeter;
+	this->pricePerMeter = eeh.pricePerMeter;
 	return *this;
 }
 
 bool Timber::operator==(const Timber& eeh)
 {
 	return (this->width == eeh.width) && (this->length == eeh.length) && (this->totalStock == eeh.totalStock) && (this->pricePerMeter == eeh.pricePerMeter);
+}
+
+bool Timber::operator<(const Timber& eeh)
+{
+	return (this->width * this->length == eeh.width * eeh.length);
 }
 
 int Timber::getWidth()
@@ -78,5 +83,5 @@ void Timber::setPricePerMeter(float pricePerMeter)
 }
 
 string Timber::toString() {
-	return to_string(width) + " " + to_string(length) + " " + to_string(totalStock) + " " + to_string(pricePerMeter);
+	return to_string(width) + "m in width| " + to_string(length) + "m in length | " + to_string(totalStock) + " pieces in stock | " + to_string(pricePerMeter) + "sek per meter";
 }

@@ -2,11 +2,14 @@
 #define TIMBERREGISTER_H
 #include <string>
 
+using namespace std;
+
 class Timber
 {
 private:
 	int width;
 	int length;
+	string dimension;
 	int totalStock;
 	float pricePerMeter;
 
@@ -17,6 +20,7 @@ public:
 
 	Timber& operator=(const Timber& eeh);
 	bool operator==(const Timber& eeh);
+	bool operator<(const Timber& eeh);
 	
 	int getWidth();
 	int getLength();

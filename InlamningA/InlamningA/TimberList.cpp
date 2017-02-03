@@ -1,6 +1,8 @@
 #include "TimberList.h"
 #include "TimberRegister.h"
 #include <string>
+#include <fstream>
+#include <iostream>
 
 TimberList::TimberList()
 {
@@ -40,13 +42,13 @@ bool TimberList::addTimber(int width, int length, int totalStock, float pricePer
 		{
 			exists = true;
 		}
-		if (!exists)
-		{
-			allTimber[nrOfTimber++] = new Timber(width, length, totalStock, pricePerMeter);
+	}
+	if (!exists)
+	{
+		allTimber[nrOfTimber++] = new Timber(width, length, totalStock, pricePerMeter);
+	}
 		return !exists;
 		}
-	}
-}
 
 void TimberList::expand()
 {
@@ -59,4 +61,25 @@ void TimberList::expand()
 	delete[] allTimber;
 	allTimber = temp;
 	temp = nullptr;
+}
+
+void TimberList::ShowAll() const
+{
+	for (int i = 0; i < nrOfTimber; i++)
+	{
+		cout << allTimber[i]->toString() << endl;
+	}
+}
+
+void TimberList::getTimberAsString(string arr[], int nrOf) const
+{
+	if (nrOfTimber < nrOf)
+	{
+		nrOf = nrOfTimber;
+	}
+
+	for (int i = 0; i < nrOf; i++)
+	{
+		arr[i] = allTimber[i]->toString();
+	}
 }

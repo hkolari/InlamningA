@@ -9,10 +9,12 @@ class TimberList
 {
 private:
 	Timber** allTimber;
+	/*
 	int width;
 	int length;
 	int totalStock;
 	float pricePerMeter;
+	*/
 	int capacity;
 	int nrOfTimber;
 
@@ -23,6 +25,8 @@ public:
 
 	~TimberList();
 	void expand();
+
+	void getTimberAsString(string arr[], int nrOf) const;
 };
 
 #endif
