@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iostream>
 
+using namespace std;
+
 TimberList::TimberList()
 {
 	this->capacity = 1;
@@ -26,7 +28,7 @@ TimberList::~TimberList()
 	delete[] allTimber;
 }
 
-bool TimberList::addTimber(int width, int length, int totalStock, float pricePerMeter)
+bool TimberList::addTimber(int width, int length, string dimension, int totalStock, float pricePerMeter)
 {
 	bool exists = false;
 
@@ -35,7 +37,7 @@ bool TimberList::addTimber(int width, int length, int totalStock, float pricePer
 		this->expand();
 	}
 
-	Timber temp(width, length, totalStock, pricePerMeter);
+	Timber temp(width, length, dimension, totalStock, pricePerMeter);
 	for (int i = 0; i < nrOfTimber && !exists; i++)
 	{
 		if (temp == *allTimber[i])
@@ -45,7 +47,7 @@ bool TimberList::addTimber(int width, int length, int totalStock, float pricePer
 	}
 	if (!exists)
 	{
-		allTimber[nrOfTimber++] = new Timber(width, length, totalStock, pricePerMeter);
+		allTimber[nrOfTimber++] = new Timber(width, length, dimension, totalStock, pricePerMeter);
 	}
 		return !exists;
 		}
@@ -82,4 +84,19 @@ void TimberList::getTimberAsString(string arr[], int nrOf) const
 	{
 		arr[i] = allTimber[i]->toString();
 	}
+}
+
+bool TimberList::removeTimber(int width, int length, string dimension, int totalStock, float pricePerMeter)
+{
+	Timber temp(width, length, dimension, totalStock, pricePerMeter);
+	bool removed = false;
+
+
+	return removed;
+}
+
+bool TimberList::doesItExist(string dimension) const
+{
+	bool exists = false;
+	Timber temp(dimension);
 }

@@ -10,14 +10,15 @@ int main()
 	TimberList list;
 	int menuChoice = 0;
 	int continueOrNot = 0;
-
-	int insertWidth = -1;
-	int insertLength = -1;
-	int insertAmount = -1;
-	float insertPricePerMeter = -1;
 	
 	while (continueOrNot == 0)
 	{
+		int insertWidth = -1;
+		int insertLength = -1;
+		string insertDimension = "EMPTY";
+		int insertAmount = -1;
+		float insertPricePerMeter = -1;
+
 		cout << "-----------------------" << endl;
 		cout << "Welcome to TimberStore!" << endl;
 		cout << "Select an option" << endl << endl;
@@ -45,14 +46,21 @@ int main()
 				cin >> insertWidth; cin.ignore();
 				cout << "Please insert the timber's length: " << endl;
 				cin >> insertLength; cin.ignore();
+
+				//Dimension
+				insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
+				
+
 				cout << "Please insert amount of timber added to stock: " << endl;
 				cin >> insertAmount; cin.ignore();
 				cout << "Please insert the price per meter (You can use decimals): " << endl;
 				cin >> insertPricePerMeter; cin.ignore();
-				list.addTimber(insertWidth, insertLength, insertAmount, insertPricePerMeter);
+				list.addTimber(insertWidth, insertLength, insertDimension ,insertAmount, insertPricePerMeter);
 				break;
 
 			case 3:
+				cout << "Please insert the dimension to be removed (width x length, for example 20x50)" << endl;
+				cin >> insertDimension; cin.ignore();
 				break;
 
 			case 4:

@@ -7,14 +7,16 @@ Timber::Timber()
 {
 	width = -1;
 	length = -1;
+	dimension = "EMPTY";
 	totalStock = -1;
 	pricePerMeter = -1;
 }
 
-Timber::Timber(int width, int length, int totalStock, float pricePerMeter)
+Timber::Timber(int width, int length, string dimension, int totalStock, float pricePerMeter)
 {
 	this->width = width;
 	this->length = length;
+	this->dimension = dimension;
 	this->totalStock = totalStock;
 	this->pricePerMeter = pricePerMeter;
 }
@@ -27,6 +29,7 @@ Timber& Timber::operator=(const Timber& eeh)
 {
 	this->width = eeh.width;
 	this->length = eeh.length;
+	this->dimension = eeh.dimension;
 	this->totalStock = eeh.totalStock;
 	this->pricePerMeter = eeh.pricePerMeter;
 	return *this;
@@ -34,7 +37,7 @@ Timber& Timber::operator=(const Timber& eeh)
 
 bool Timber::operator==(const Timber& eeh)
 {
-	return (this->width == eeh.width) && (this->length == eeh.length) && (this->totalStock == eeh.totalStock) && (this->pricePerMeter == eeh.pricePerMeter);
+	return (this->width == eeh.width) && (this->length == eeh.length) &&(this->totalStock == eeh.totalStock) && (this->pricePerMeter == eeh.pricePerMeter);
 }
 
 bool Timber::operator<(const Timber& eeh)
@@ -50,6 +53,12 @@ int Timber::getWidth()
 int Timber::getLength()
 {
 	return length;
+}
+
+string Timber::getDimension()
+{
+	//For later use when removing a dimension
+	return dimension;
 }
 
 int Timber::getTotalStock()
@@ -72,6 +81,11 @@ void Timber::setLength(int length)
 	this->length = length;
 }
 
+void Timber::SetDimension(string dimension)
+{
+	this->dimension = dimension;
+}
+
 void Timber::setTotalStock(int totalStock)
 {
 	this->totalStock = totalStock;
@@ -83,5 +97,5 @@ void Timber::setPricePerMeter(float pricePerMeter)
 }
 
 string Timber::toString() {
-	return to_string(width) + "m in width| " + to_string(length) + "m in length | " + to_string(totalStock) + " pieces in stock | " + to_string(pricePerMeter) + "sek per meter";
+	return dimension + " meter | " + to_string(totalStock) + " meters in stock | " + to_string(pricePerMeter) + "sek per meter";
 }
