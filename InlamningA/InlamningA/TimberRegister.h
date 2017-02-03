@@ -10,12 +10,13 @@ private:
 	int width;
 	int length;
 	string dimension;
+	string dimension2;
 	int totalStock;
 	float pricePerMeter;
 
 public:
 	Timber();
-	Timber(int width, int length, string dimension, int totalStock, float pricePerMeter);
+	Timber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter);
 	~Timber();
 
 	Timber& operator=(const Timber& eeh);
@@ -25,12 +26,14 @@ public:
 	int getWidth();
 	int getLength();
 	string getDimension();
+	string getDimension2();
 	int getTotalStock();
 	float getPricePerMeter();
 
 	void setWidth(int width);
 	void setLength(int length);
 	void SetDimension(string dimension);
+	void SetDimension2(string dimension2);
 	void setTotalStock(int totalStock);
 	void setPricePerMeter(float pricePerMeter);
 

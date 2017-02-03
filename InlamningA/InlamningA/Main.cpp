@@ -16,6 +16,7 @@ int main()
 		int insertWidth = -1;
 		int insertLength = -1;
 		string insertDimension = "EMPTY";
+		string insertDimension2 = "EMPTY";
 		int insertAmount = -1;
 		float insertPricePerMeter = -1;
 
@@ -25,7 +26,7 @@ int main()
 		cout << "1.Show Current Stock" << endl;
 		cout << "2.Add New Timber" << endl;
 		cout << "3.Remove Timber" << endl;
-		cout << "4.Search Timber" << endl;
+		cout << "4.Show Specific Meters Timber" << endl;
 		cout << "5.Total Timber Stock Value" << endl;
 		cout << "6.Edit Timber" << endl;
 		cout << "7.Save Timber Stock" << endl;
@@ -49,13 +50,21 @@ int main()
 
 				//Dimension
 				insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
+				insertDimension2 = to_string(insertLength) + "x" + to_string(insertWidth);
 				
+				if (list.doesItExist(insertDimension) || list.doesItExist(insertDimension2) == true)
+				{
+					cout << "Duplicate found, try again" << endl;
+					break;
+				}
+				
+
 
 				cout << "Please insert amount of timber added to stock: " << endl;
 				cin >> insertAmount; cin.ignore();
 				cout << "Please insert the price per meter (You can use decimals): " << endl;
 				cin >> insertPricePerMeter; cin.ignore();
-				list.addTimber(insertWidth, insertLength, insertDimension ,insertAmount, insertPricePerMeter);
+				list.addTimber(insertWidth, insertLength, insertDimension, insertDimension2, insertAmount, insertPricePerMeter);
 				break;
 
 			case 3:

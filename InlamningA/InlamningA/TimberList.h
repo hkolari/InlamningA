@@ -20,9 +20,9 @@ private:
 
 public:
 	TimberList();
-	bool addTimber(int width, int length, string dimension, int totalStock, float pricePerMeter);
+	bool addTimber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter);
 	void ShowAll() const;
-	bool removeTimber(int width, int length, string dimension, int totalStock, float pricePerMeter);
+	bool removeTimber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter);
 	bool doesItExist(string dimension) const;
 
 	~TimberList();
