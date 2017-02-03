@@ -86,20 +86,36 @@ void TimberList::getTimberAsString(string arr[], int nrOf) const
 	}
 }
 
-bool TimberList::removeTimber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter)
+bool TimberList::removeTimber(string dimension)
 {
-	Timber temp(width, length, dimension, dimension2, totalStock, pricePerMeter);
 	bool removed = false;
+	for (int i = 0; i < this->nrOfTimber; i++)
+	{
+		if (this->allTimber[i]->getDimension() == dimension)
+		{
+			allTimber[i] = allTimber[nrOfTimber - 1];
+			*allTimber[nrOfTimber - 1] = Timber();
+			removed = true;
+			nrOfTimber--;
 
-
+			if (nrOfTimber == 1 && this->allTimber[i]->getDimension() == *allTimber[0])
+			{
+				*allTimber[0] = Timber();
+				nrOfTimber--;
+				removed = true;
+			}
+		}
+	}
 	return removed;
 }
 
 bool TimberList::doesItExist(string dimension) const
 {
 	bool exists = false;
-	for (int i = 0; i < this->nrOfTimber; i++) {
-		if (this->allTimber[i]->getDimension() == dimension) {
+	for (int i = 0; i < this->nrOfTimber; i++) 
+	{
+		if (this->allTimber[i]->getDimension() == dimension) 
+		{
 			exists = true;
 		}
 	}

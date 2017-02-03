@@ -70,6 +70,10 @@ int main()
 			case 3:
 				cout << "Please insert the dimension to be removed (width x length, for example 20x50)" << endl;
 				cin >> insertDimension; cin.ignore();
+				if (list.doesItExist(insertDimension) || list.doesItExist(insertDimension2) == true)
+				{
+					list.removeTimber(insertDimension);
+				}
 				break;
 
 			case 4:

@@ -22,7 +22,7 @@ public:
 	TimberList();
 	bool addTimber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter);
 	void ShowAll() const;
-	bool removeTimber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter);
+	bool removeTimber(string dimension);
 	bool doesItExist(string dimension) const;
 
 	~TimberList();
