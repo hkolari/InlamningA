@@ -67,6 +67,7 @@ void TimberList::expand()
 
 void TimberList::ShowAll() const
 {
+	cout << "Current stock:" << endl;
 	for (int i = 0; i < nrOfTimber; i++)
 	{
 		cout << allTimber[i]->toString() << endl;
@@ -97,13 +98,6 @@ bool TimberList::removeTimber(string dimension)
 			*allTimber[nrOfTimber - 1] = Timber();
 			removed = true;
 			nrOfTimber--;
-
-			if (nrOfTimber == 1 && this->allTimber[i]->getDimension() == *allTimber[0])
-			{
-				*allTimber[0] = Timber();
-				nrOfTimber--;
-				removed = true;
-			}
 		}
 	}
 	return removed;

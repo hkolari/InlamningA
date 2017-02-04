@@ -20,6 +20,7 @@ int main()
 		int insertAmount = -1;
 		float insertPricePerMeter = -1;
 
+
 		cout << "-----------------------" << endl;
 		cout << "Welcome to TimberStore!" << endl;
 		cout << "Select an option" << endl << endl;
@@ -38,7 +39,6 @@ int main()
 			switch (menuChoice)
 			{
 			case 1:
-				cout << "Current stock:" << endl;
 				list.ShowAll();
 				break;
 
@@ -59,7 +59,6 @@ int main()
 				}
 				
 
-
 				cout << "Please insert amount of timber added to stock: " << endl;
 				cin >> insertAmount; cin.ignore();
 				cout << "Please insert the price per meter (You can use decimals): " << endl;
@@ -68,11 +67,21 @@ int main()
 				break;
 
 			case 3:
-				cout << "Please insert the dimension to be removed (width x length, for example 20x50)" << endl;
-				cin >> insertDimension; cin.ignore();
-				if (list.doesItExist(insertDimension) || list.doesItExist(insertDimension2) == true)
+				cout << "Please insert the dimension width:" << endl;
+				cin >> insertWidth; cin.ignore();
+				cout << "Please insert the dimension length :" << endl;
+				cin >> insertLength; cin.ignore();
+
+				insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
+				insertDimension2 = to_string(insertLength) + "x" + to_string(insertWidth);
+
+				if (list.doesItExist(insertDimension) == true)
 				{
 					list.removeTimber(insertDimension);
+				}
+				if (list.doesItExist(insertDimension2) == true)
+				{
+					list.removeTimber(insertDimension2);
 				}
 				break;
 
