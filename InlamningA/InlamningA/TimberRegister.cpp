@@ -12,7 +12,7 @@ Timber::Timber()
 	pricePerMeter = -1;
 }
 
-Timber::Timber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter)
+Timber::Timber(int width, int length, string dimension,  int totalStock, float pricePerMeter)
 {
 	this->width = width;
 	this->length = length;
@@ -30,7 +30,6 @@ Timber& Timber::operator=(const Timber& eeh)
 	this->width = eeh.width;
 	this->length = eeh.length;
 	this->dimension = eeh.dimension;
-	this->dimension2 = eeh.dimension2;
 	this->totalStock = eeh.totalStock;
 	this->pricePerMeter = eeh.pricePerMeter;
 	return *this;
@@ -38,7 +37,7 @@ Timber& Timber::operator=(const Timber& eeh)
 
 bool Timber::operator==(const Timber& eeh)
 {
-	return (this->width == eeh.width) && (this->length == eeh.length) && (this->dimension == eeh.dimension) && (this->dimension2 == eeh.dimension2) && (this->totalStock == eeh.totalStock) && (this->pricePerMeter == eeh.pricePerMeter);
+	return (this->width == eeh.width) && (this->length == eeh.length) && (this->dimension == eeh.dimension) && (this->totalStock == eeh.totalStock) && (this->pricePerMeter == eeh.pricePerMeter);
 }
 
 bool Timber::operator<(const Timber& eeh)
@@ -60,12 +59,6 @@ string Timber::getDimension()
 {
 	//For later use when removing a dimension
 	return dimension;
-}
-
-string Timber::getDimension2()
-{
-	//For later use when removing a dimension
-	return dimension2;
 }
 
 int Timber::getTotalStock()
@@ -91,11 +84,6 @@ void Timber::setLength(int length)
 void Timber::SetDimension(string dimension)
 {
 	this->dimension = dimension;
-}
-
-void Timber::SetDimension2(string dimension2)
-{
-	this->dimension2 = dimension2;
 }
 
 void Timber::setTotalStock(int totalStock)

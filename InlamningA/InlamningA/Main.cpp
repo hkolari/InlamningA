@@ -16,7 +16,6 @@ int main()
 		int insertWidth = -1;
 		int insertLength = -1;
 		string insertDimension = "EMPTY";
-		string insertDimension2 = "EMPTY";
 		int insertAmount = -1;
 		float insertPricePerMeter = -1;
 
@@ -39,7 +38,9 @@ int main()
 			switch (menuChoice)
 			{
 			case 1:
-				list.ShowAll();
+				int stop = 0;
+				cout << "Current stock:" << endl;
+				cout << list.ShowAll() << endl;
 				break;
 
 			case 2:
@@ -50,20 +51,18 @@ int main()
 
 				//Dimension
 				insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
-				insertDimension2 = to_string(insertLength) + "x" + to_string(insertWidth);
 				
-				if (list.doesItExist(insertDimension) || list.doesItExist(insertDimension2) == true)
+				if (list.doesItExist(insertDimension) == true)
 				{
 					cout << "Duplicate found, try again" << endl;
 					break;
 				}
-				
 
 				cout << "Please insert amount of timber added to stock: " << endl;
 				cin >> insertAmount; cin.ignore();
 				cout << "Please insert the price per meter (You can use decimals): " << endl;
 				cin >> insertPricePerMeter; cin.ignore();
-				list.addTimber(insertWidth, insertLength, insertDimension, insertDimension2, insertAmount, insertPricePerMeter);
+				list.addTimber(insertWidth, insertLength, insertDimension, insertAmount, insertPricePerMeter);
 				break;
 
 			case 3:
@@ -73,15 +72,10 @@ int main()
 				cin >> insertLength; cin.ignore();
 
 				insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
-				insertDimension2 = to_string(insertLength) + "x" + to_string(insertWidth);
 
 				if (list.doesItExist(insertDimension) == true)
 				{
 					list.removeTimber(insertDimension);
-				}
-				if (list.doesItExist(insertDimension2) == true)
-				{
-					list.removeTimber(insertDimension2);
 				}
 				break;
 

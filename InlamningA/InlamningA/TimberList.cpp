@@ -28,7 +28,7 @@ TimberList::~TimberList()
 	delete[] allTimber;
 }
 
-bool TimberList::addTimber(int width, int length, string dimension, string dimension2, int totalStock, float pricePerMeter)
+bool TimberList::addTimber(int width, int length, string dimension, int totalStock, float pricePerMeter)
 {
 	bool exists = false;
 
@@ -37,7 +37,7 @@ bool TimberList::addTimber(int width, int length, string dimension, string dimen
 		this->expand();
 	}
 
-	Timber temp(width, length, dimension, dimension2, totalStock, pricePerMeter);
+	Timber temp(width, length, dimension, totalStock, pricePerMeter);
 	for (int i = 0; i < nrOfTimber && !exists; i++)
 	{
 		if (temp == *allTimber[i])
@@ -47,7 +47,7 @@ bool TimberList::addTimber(int width, int length, string dimension, string dimen
 	}
 	if (!exists)
 	{
-		allTimber[nrOfTimber++] = new Timber(width, length, dimension, dimension2, totalStock, pricePerMeter);
+		allTimber[nrOfTimber++] = new Timber(width, length, dimension, totalStock, pricePerMeter);
 	}
 		return !exists;
 		}
@@ -65,22 +65,18 @@ void TimberList::expand()
 	temp = nullptr;
 }
 
-void TimberList::ShowAll() const
+string TimberList::ShowAll() const
 {
-	cout << "Current stock:" << endl;
+	string temp;
 	for (int i = 0; i < nrOfTimber; i++)
 	{
-		cout << allTimber[i]->toString() << endl;
+		temp = allTimber[i]->toString();
 	}
+	return temp;
 }
 
 void TimberList::getTimberAsString(string arr[], int nrOf) const
 {
-	if (nrOfTimber < nrOf)
-	{
-		nrOf = nrOfTimber;
-	}
-
 	for (int i = 0; i < nrOf; i++)
 	{
 		arr[i] = allTimber[i]->toString();
