@@ -22,6 +22,7 @@ private:
 
 public:
 	TimberList();
+	TimberList(int capacity);
 	bool addTimber(int width, int length, string dimension, int totalStock, float pricePerMeter);
 	string ShowAll() const;
 	bool removeTimber(string dimension);

@@ -22,6 +22,18 @@ TimberList::TimberList()
 	}
 }
 
+TimberList::TimberList(int capacity)
+{
+	this->capacity = capacity;
+	this->nrOfTimber = 0;
+
+	allTimber = new Timber*[capacity];
+	for (int i = 0; i < capacity; i++)
+	{
+		allTimber[i] = nullptr;
+	}
+}
+
 
 TimberList::~TimberList()
 {

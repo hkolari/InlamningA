@@ -14,6 +14,14 @@ Timber::Timber()
 	totalStock = -1;
 	pricePerMeter = -1;
 }
+Timber::Timber(Timber &copy)
+{
+	this->width = copy.width;
+	this->length = copy.length;
+	this->dimension = copy.dimension;
+	this->totalStock = copy.totalStock;
+	this->pricePerMeter = copy.pricePerMeter;
+}
 
 Timber::Timber(int width, int length, string dimension,  int totalStock, float pricePerMeter)
 {

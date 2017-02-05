@@ -17,6 +17,7 @@ private:
 
 public:
 	Timber();
+	Timber(Timber & copy);
 	Timber(int width, int length, string dimension, int totalStock, float pricePerMeter);
 	~Timber();
 
