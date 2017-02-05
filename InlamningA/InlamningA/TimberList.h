@@ -12,7 +12,7 @@ private:
 	/*
 	int width;
 	int length;
-	int totalStock;
+	int totalStock;,
 	float pricePerMeter;
 	*/
 	int capacity;
@@ -24,6 +24,8 @@ public:
 	string ShowAll() const;
 	bool removeTimber(string dimension);
 	bool doesItExist(string dimension) const;
+	string searchFor(int meters) const;
+	float totalSummary() const;
 
 	~TimberList();
 	void expand();

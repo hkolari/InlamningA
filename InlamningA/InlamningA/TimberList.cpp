@@ -93,15 +93,17 @@ bool TimberList::removeTimber(string dimension)
 		if (this->allTimber[i]->getDimension() == dimension)
 		{
 
-			//cout << allTimber[i]->getDimension() << "\n";
-			//gör den rätta positionet till samma sakk som sisata
-			allTimber[i] = allTimber[nrOfTimber - 1];
-			//cout << allTimber[i]->getDimension() << "\n";
-			//ska göra att arrayn blir 1 mindre, men fuckar upp sakerna och också ändrar positionet som vi ändrar
-			//*allTimber[nrOfTimber - 1] = Timber();
-			//cout << allTimber[i]->getDimension() << "\n";
+			allTimber[i] = allTimber[nrOfTimber - 1]; //sätter aktuella (som ska bort) timber till den som är sist i Arrayen
+
+
+			//*allTimber[nrOfTimber - 1] = Timber();  //  Vi säger att 
+			// Vi råkade göra en deepcopy. Då Sista timber var flyttad till allTimber[i]
+			// 
+
+			allTimber[nrOfTimber - 1] = new Timber();
+			
 			removed = true;
-			//nrOfTimber--;
+			nrOfTimber--;
 		}
 	}
 	return removed;
@@ -119,4 +121,33 @@ bool TimberList::doesItExist(string dimension) const
 	}
 
 	return exists;
+}
+
+string TimberList::searchFor(int meters) const
+{
+	string output;
+	for (int i = 0; i < this->nrOfTimber; i++)
+	{
+		if (this->allTimber[i]->getTotalStock() == meters || this->allTimber[i]->getTotalStock() < meters)
+		{
+			output += allTimber[i]->toString() + "\n";
+		}
+	}
+
+	return output;
+
+}
+
+float TimberList::totalSummary() const
+{
+	float sendSumBack;
+	for (int i = 0;  i < this->nrOfTimber; i++)
+	{
+		float toAdd = -1;
+		float perMeter = this->allTimber[i]->getPricePerMeter();
+		int perAmount = this->allTimber[i]->getTotalStock();
+		toAdd = perMeter * perAmount;
+		sendSumBack = sendSumBack + toAdd;
+	}
+	return sendSumBack;
 }

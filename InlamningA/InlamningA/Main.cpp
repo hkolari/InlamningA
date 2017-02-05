@@ -18,6 +18,7 @@ int main()
 		string insertDimension = "EMPTY";
 		int insertAmount = -1;
 		float insertPricePerMeter = -1;
+		int insertMeter = -1;
 
 
 		cout << "-----------------------" << endl;
@@ -50,7 +51,6 @@ int main()
 			cin >> insertWidth; cin.ignore();
 			cout << "Please insert the timber's length: " << endl;
 			cin >> insertLength; cin.ignore();
-
 			//Dimension
 			insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
 
@@ -59,8 +59,7 @@ int main()
 				cout << "Duplicate found, try again" << endl;
 				break;
 			}
-
-			cout << "Please insert amount of timber added to stock: " << endl;
+			cout << "Please insert amount of meters that will be added to stock: " << endl;
 			cin >> insertAmount; cin.ignore();
 			cout << "Please insert the price per meter (You can use decimals): " << endl;
 			cin >> insertPricePerMeter; cin.ignore();
@@ -83,10 +82,17 @@ int main()
 			break;
 		}
 		case 4:
+		{
+			cout << "What is the maximal amount of meters you would like to search for?:" << endl;
+			cin >> insertMeter; cin.ignore();
+			cout << list.searchFor(insertMeter) << endl;
 			break;
-
+		}
 		case 5:
+		{
+			cout << "Total value of your whole stock is: " << list.totalSummary() << endl;
 			break;
+		}
 
 		case 6:
 			break;
