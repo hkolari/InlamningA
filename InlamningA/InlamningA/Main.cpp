@@ -10,7 +10,7 @@ int main()
 	TimberList list;
 	int menuChoice = 0;
 	int continueOrNot = 0;
-	
+
 	while (continueOrNot == 0)
 	{
 		int insertWidth = -1;
@@ -35,74 +35,80 @@ int main()
 		cout << "-----------------------" << endl;
 		cin >> menuChoice; cin.ignore();
 
-			switch (menuChoice)
+		switch (menuChoice)
+		{
+		case 1:
+		{
+			int stop = 0;
+			cout << "Current stock:" << endl;
+			cout << list.ShowAll() << endl;
+			break;
+		}
+		case 2:
+		{
+			cout << "Please insert the timber's width: " << endl;
+			cin >> insertWidth; cin.ignore();
+			cout << "Please insert the timber's length: " << endl;
+			cin >> insertLength; cin.ignore();
+
+			//Dimension
+			insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
+
+			if (list.doesItExist(insertDimension) == true)
 			{
-			case 1:
-				int stop = 0;
-				cout << "Current stock:" << endl;
-				cout << list.ShowAll() << endl;
-				break;
-
-			case 2:
-				cout << "Please insert the timber's width: " << endl;
-				cin >> insertWidth; cin.ignore();
-				cout << "Please insert the timber's length: " << endl;
-				cin >> insertLength; cin.ignore();
-
-				//Dimension
-				insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
-				
-				if (list.doesItExist(insertDimension) == true)
-				{
-					cout << "Duplicate found, try again" << endl;
-					break;
-				}
-
-				cout << "Please insert amount of timber added to stock: " << endl;
-				cin >> insertAmount; cin.ignore();
-				cout << "Please insert the price per meter (You can use decimals): " << endl;
-				cin >> insertPricePerMeter; cin.ignore();
-				list.addTimber(insertWidth, insertLength, insertDimension, insertAmount, insertPricePerMeter);
-				break;
-
-			case 3:
-				cout << "Please insert the dimension width:" << endl;
-				cin >> insertWidth; cin.ignore();
-				cout << "Please insert the dimension length :" << endl;
-				cin >> insertLength; cin.ignore();
-
-				insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
-
-				if (list.doesItExist(insertDimension) == true)
-				{
-					list.removeTimber(insertDimension);
-				}
-				break;
-
-			case 4:
-				break;
-
-			case 5:
-				break;
-
-			case 6:
-				break;
-
-			case 7:
-				break;
-
-			case 8:
-				break;
-
-			case 9:
-				cout << "Shutting down" << endl;
-				continueOrNot = 1;
-				break;
-
-			default:
-				cout << "Error please try again" << endl;
+				cout << "Duplicate found, try again" << endl;
 				break;
 			}
+
+			cout << "Please insert amount of timber added to stock: " << endl;
+			cin >> insertAmount; cin.ignore();
+			cout << "Please insert the price per meter (You can use decimals): " << endl;
+			cin >> insertPricePerMeter; cin.ignore();
+			list.addTimber(insertWidth, insertLength, insertDimension, insertAmount, insertPricePerMeter);
+			break;
+		}
+		case 3:
+		{
+			cout << "Please insert the dimension width:" << endl;
+			cin >> insertWidth; cin.ignore();
+			cout << "Please insert the dimension length :" << endl;
+			cin >> insertLength; cin.ignore();
+
+			insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
+
+			if (list.doesItExist(insertDimension) == true)
+			{
+				list.removeTimber(insertDimension);
+			}
+			break;
+		}
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+		case 6:
+			break;
+
+		case 7:
+			break;
+
+		case 8:
+			break;
+
+		case 9:
+		{
+			cout << "Shutting down" << endl;
+			continueOrNot = 1;
+			break;
+		}
+		default:
+		{
+			cout << "Error please try again" << endl;
+			break;
+		}
+		}
 	}
 	getchar();
 	return 0;
