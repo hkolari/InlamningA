@@ -19,6 +19,7 @@ int main()
 		int insertAmount = -1;
 		float insertPricePerMeter = -1;
 		int insertMeter = -1;
+		string fileName = "EMPTY";
 
 
 		cout << "-----------------------" << endl;
@@ -90,7 +91,7 @@ int main()
 		}
 		case 5:
 		{
-			cout << "Total value of your whole stock is: " << list.totalSummary() << endl;
+			cout << "Total value of your whole stock is: " << list.totalSummary() << "sek" << endl;
 			break;
 		}
 
@@ -98,7 +99,12 @@ int main()
 			break;
 
 		case 7:
+		{
+			cout << "What would you like to name the file to (remember to insert file's format): " << endl;
+			cin >> fileName; cin.ignore();
+			list.saveFile(fileName);
 			break;
+		}
 
 		case 8:
 			break;

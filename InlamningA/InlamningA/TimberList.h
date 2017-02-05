@@ -27,6 +27,8 @@ public:
 	string searchFor(int meters) const;
 	float totalSummary() const;
 
+	FILE TimberList::saveFile(string fileName) const;
+
 	~TimberList();
 	void expand();
 

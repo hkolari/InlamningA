@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <array>
+#include <fstream>
 
 using namespace std;
 
@@ -140,7 +141,7 @@ string TimberList::searchFor(int meters) const
 
 float TimberList::totalSummary() const
 {
-	float sendSumBack;
+	float sendSumBack = 0;
 	for (int i = 0;  i < this->nrOfTimber; i++)
 	{
 		float toAdd = -1;
@@ -150,4 +151,17 @@ float TimberList::totalSummary() const
 		sendSumBack = sendSumBack + toAdd;
 	}
 	return sendSumBack;
+}
+
+FILE TimberList::saveFile(string fileName) const
+{
+	ofstream newFile(fileName, ios_base::app);
+	if (newFile.is_open())
+	{
+		for (int i = 0; i < nrOfTimber; i++)
+		{
+			newFile << allTimber[i]->toString() << endl;
+		}
+	}
+	newFile.close();
 }
