@@ -1,3 +1,5 @@
+//Written by Henry Kolari (heko16 - 199712038430)
+
 #ifndef TIMBERLIST_H
 #define TIMBERLIST_H
 #include "TimberRegister.h"
@@ -26,7 +28,7 @@ public:
 	bool doesItExist(string dimension) const;
 	string searchFor(int meters) const;
 	float totalSummary() const;
-	bool TimberList::editContent(string dimension, int value);
+	bool TimberList::editContent(string dimension, float value, int whichOne);
 
 	void TimberList::saveFile(string fileName) const;
 	string TimberList::readFile(string fileName) const;

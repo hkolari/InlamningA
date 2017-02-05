@@ -1,3 +1,5 @@
+//Written by Henry Kolari (heko16 - 199712038430)
+
 #ifndef TIMBERREGISTER_H
 #define TIMBERREGISTER_H
 #include <string>

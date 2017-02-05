@@ -1,3 +1,5 @@
+//Written by Henry Kolari (heko16 - 199712038430)
+
 #include <string>
 #include <iostream>
 #include "TimberList.h"
@@ -112,11 +114,13 @@ int main()
 				{
 					cout << "What would you like to change the amount of meter in stock to?:" << endl;
 					cin >> insertAmount; cin.ignore();
+					list.editContent(insertDimension, insertAmount, insertChoice);
 				}
 				if (insertChoice == 2)
 				{
 					cout << "What would you like to change the price per meter to?:" << endl;
 					cin >> insertPricePerMeter; cin.ignore();
+					list.editContent(insertDimension, insertPricePerMeter, insertChoice);
 				}
 			}
 			else

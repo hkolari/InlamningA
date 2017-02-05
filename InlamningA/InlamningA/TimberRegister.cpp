@@ -1,3 +1,5 @@
+//Written by Henry Kolari (heko16 - 199712038430)
+
 #include "TimberRegister.h"
 #include "TimberList.h"
 #include <string>

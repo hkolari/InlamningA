@@ -1,3 +1,5 @@
+//Written by Henry Kolari (heko16 - 199712038430)
+
 #include "TimberList.h"
 #include "TimberRegister.h"
 #include <string>
@@ -153,9 +155,24 @@ float TimberList::totalSummary() const
 	return sendSumBack;
 }
 
-bool TimberList::editContent(string dimension, int value)
+bool TimberList::editContent(string dimension, float valueFromMain, int whichOne)
 {
-
+	bool exists = false;
+	for (int i = 0; i < this->nrOfTimber; i++)
+	{
+		if (this->allTimber[i]->getDimension() == dimension)
+		{
+			if (whichOne == 1)
+			{
+				this->allTimber[i]->setTotalStock(valueFromMain);
+			}
+			if (whichOne == 2)
+			{
+				this->allTimber[i]->setPricePerMeter(valueFromMain);
+			}
+		}
+	}
+	return exists;
 }
 
 void TimberList::saveFile(string fileName) const
