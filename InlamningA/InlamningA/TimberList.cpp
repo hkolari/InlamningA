@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <array>
 
 using namespace std;
 
@@ -91,10 +92,16 @@ bool TimberList::removeTimber(string dimension)
 	{
 		if (this->allTimber[i]->getDimension() == dimension)
 		{
+
+			//cout << allTimber[i]->getDimension() << "\n";
+			//gör den rätta positionet till samma sakk som sisata
 			allTimber[i] = allTimber[nrOfTimber - 1];
-			*allTimber[nrOfTimber - 1] = Timber();
+			//cout << allTimber[i]->getDimension() << "\n";
+			//ska göra att arrayn blir 1 mindre, men fuckar upp sakerna och också ändrar positionet som vi ändrar
+			//*allTimber[nrOfTimber - 1] = Timber();
+			//cout << allTimber[i]->getDimension() << "\n";
 			removed = true;
-			nrOfTimber--;
+			//nrOfTimber--;
 		}
 	}
 	return removed;
