@@ -70,7 +70,7 @@ string TimberList::ShowAll() const
 	string temp;
 	for (int i = 0; i < nrOfTimber; i++)
 	{
-		temp = allTimber[i]->toString();
+		temp += allTimber[i]->toString() + "\n";
 	}
 	return temp;
 }
