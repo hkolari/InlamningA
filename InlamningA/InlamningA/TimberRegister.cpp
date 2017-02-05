@@ -2,6 +2,7 @@
 #include "TimberList.h"
 #include <string>
 
+using namespace std;
 
 Timber::Timber()
 {
@@ -57,7 +58,6 @@ int Timber::getLength()
 
 string Timber::getDimension()
 {
-	//For later use when removing a dimension
 	return dimension;
 }
 

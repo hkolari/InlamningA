@@ -23,7 +23,7 @@ TimberList::TimberList()
 
 TimberList::~TimberList()
 {
-	for (int i = 0; i < capacity; i++)
+	for (int i = 0; i < nrOfTimber; i++)
 	{
 		delete allTimber[i];
 	}
@@ -93,15 +93,17 @@ bool TimberList::removeTimber(string dimension)
 	{
 		if (this->allTimber[i]->getDimension() == dimension)
 		{
-
+			
+			delete allTimber[i];
 			allTimber[i] = allTimber[nrOfTimber - 1]; //sätter aktuella (som ska bort) timber till den som är sist i Arrayen
 
 
 			//*allTimber[nrOfTimber - 1] = Timber();  //  Vi säger att 
 			// Vi råkade göra en deepcopy. Då Sista timber var flyttad till allTimber[i]
 			// 
-
-			allTimber[nrOfTimber - 1] = new Timber();
+			Timber *myTimber = new Timber();
+			allTimber[nrOfTimber - 1] = myTimber;
+			delete myTimber;
 			
 			removed = true;
 			nrOfTimber--;
@@ -134,9 +136,7 @@ string TimberList::searchFor(int meters) const
 			output += allTimber[i]->toString() + "\n";
 		}
 	}
-
 	return output;
-
 }
 
 float TimberList::totalSummary() const
@@ -153,7 +153,12 @@ float TimberList::totalSummary() const
 	return sendSumBack;
 }
 
-FILE TimberList::saveFile(string fileName) const
+bool TimberList::editContent(string dimension, int value)
+{
+
+}
+
+void TimberList::saveFile(string fileName) const
 {
 	ofstream newFile(fileName, ios_base::app);
 	if (newFile.is_open())
@@ -164,4 +169,20 @@ FILE TimberList::saveFile(string fileName) const
 		}
 	}
 	newFile.close();
+}
+
+string TimberList::readFile(string fileName) const
+{
+	string line;
+	string sendBack;
+	ifstream loadFile(fileName);
+	if (loadFile.is_open())
+	{
+		while (getline (loadFile,line))
+		{
+			sendBack += line + "\n";
+		}
+		loadFile.close();
+	}
+	return sendBack;
 }

@@ -26,8 +26,11 @@ public:
 	bool doesItExist(string dimension) const;
 	string searchFor(int meters) const;
 	float totalSummary() const;
+	bool TimberList::editContent(string dimension, int value);
 
-	FILE TimberList::saveFile(string fileName) const;
+	void TimberList::saveFile(string fileName) const;
+	string TimberList::readFile(string fileName) const;
+
 
 	~TimberList();
 	void expand();

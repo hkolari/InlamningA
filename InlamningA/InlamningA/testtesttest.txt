@@ -1,0 +1,6 @@
+1x1 meter | 1 meters in stock | 1.000000sek per meter
+2x2 meter | 2 meters in stock | 2.000000sek per meter
+3x3 meter | 3 meters in stock | 3.000000sek per meter
+1x1 meter | 1 meters in stock | 1.000000sek per meter
+2x2 meter | 2 meters in stock | 2.000000sek per meter
+3x3 meter | 3 meters in stock | 3.000000sek per meter
