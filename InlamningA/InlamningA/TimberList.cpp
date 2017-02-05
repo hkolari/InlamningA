@@ -83,6 +83,7 @@ void TimberList::getTimberAsString(string arr[], int nrOf) const
 	}
 }
 
+
 bool TimberList::removeTimber(string dimension)
 {
 	bool removed = false;
