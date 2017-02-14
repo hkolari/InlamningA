@@ -10,6 +10,38 @@
 
 using namespace std;
 
+TimberList& TimberList::operator=(const TimberList& eeh)
+{
+	this->dimension = eeh.dimension;
+	this->totalStock = eeh.totalStock;
+	this->pricePerMeter = eeh.pricePerMeter;
+	this->capacity = eeh.capacity;
+	this->nrOfTimber = eeh.nrOfTimber;
+	return *this;
+}
+
+TimberList::TimberList(TimberList &copy)
+{
+	this->dimension = copy.dimension;
+	this->totalStock = copy.totalStock;
+	this->pricePerMeter = copy.pricePerMeter;
+	this->capacity = copy.capacity;
+	this->nrOfTimber = copy.nrOfTimber;
+}
+
+
+int TimberList::getCapacity() const
+{
+	return capacity;
+}
+
+int TimberList::getNr() const
+{
+	return nrOfTimber;
+}
+
+
+
 TimberList::TimberList()
 {
 	this->capacity = 1;
@@ -94,7 +126,7 @@ void TimberList::ShowAll(string *temp) const
 	}
 }
 
-void TimberList::getTimberAsString(string arr[], int nrOf) const
+void TimberList::getTimberAsString(string *arr, int nrOf) const
 {
 	for (int i = 0; i < nrOf; i++)
 	{
@@ -102,6 +134,16 @@ void TimberList::getTimberAsString(string arr[], int nrOf) const
 	}
 }
 
+void TimberList::searchFor(int meters, string *temp) const
+{
+	for (int i = 0; i < this->nrOfTimber; i++)
+	{
+		if (this->allTimber[i]->getTotalStock() == meters || this->allTimber[i]->getTotalStock() < meters)
+		{
+			*temp += allTimber[i]->toString() + "\n";
+		}
+	}
+}
 
 bool TimberList::removeTimber(string dimension)
 {
@@ -141,17 +183,6 @@ bool TimberList::doesItExist(string dimension) const
 	}
 
 	return exists;
-}
-
-void TimberList::searchFor(int meters, string *temp) const
-{
-	for (int i = 0; i < this->nrOfTimber; i++)
-	{
-		if (this->allTimber[i]->getTotalStock() == meters || this->allTimber[i]->getTotalStock() < meters)
-		{
-			*temp += allTimber[i]->toString() + "\n";
-		}
-	}
 }
 
 float TimberList::totalSummary() const

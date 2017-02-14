@@ -11,16 +11,20 @@ class TimberList
 {
 private:
 	Timber** allTimber;
-	/*
-	int width;
-	int length;
-	int totalStock;,
+	string dimension;
+	int totalStock;
 	float pricePerMeter;
-	*/
+
 	int capacity;
 	int nrOfTimber;
 
 public:
+	TimberList(TimberList & copy);
+	TimberList& operator=(const TimberList& eeh);
+
+	int getCapacity()const;
+	int getNr()const;
+
 	TimberList();
 	TimberList(int capacity);
 	bool addTimber(string dimension, int totalStock, float pricePerMeter);
@@ -38,7 +42,7 @@ public:
 	~TimberList();
 	void expand();
 
-	void getTimberAsString(string arr[], int nrOf) const;
+	void getTimberAsString(string *arr, int nrOf) const;
 };
 
 #endif

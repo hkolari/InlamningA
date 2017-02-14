@@ -9,19 +9,17 @@ using namespace std;
 class Timber
 {
 private:
-	int width;
-	int length;
 	string dimension;
 	int totalStock;
 	float pricePerMeter;
 
 public:
 	Timber();
-	Timber(Timber & copy);
+	//Timber(Timber & copy);
 	Timber(string dimension, int totalStock, float pricePerMeter);
 	~Timber();
 
-	Timber& operator=(const Timber& eeh);
+	//Timber& operator=(const Timber& eeh);
 	bool operator==(const Timber& eeh);
 	
 	string getDimension()const;

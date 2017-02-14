@@ -8,20 +8,18 @@ using namespace std;
 
 Timber::Timber()
 {
-	width = -1;
-	length = -1;
 	dimension = "EMPTY";
 	totalStock = -1;
 	pricePerMeter = -1;
 }
+/*
 Timber::Timber(Timber &copy)
 {
-	this->width = copy.width;
-	this->length = copy.length;
 	this->dimension = copy.dimension;
 	this->totalStock = copy.totalStock;
 	this->pricePerMeter = copy.pricePerMeter;
 }
+*/
 
 Timber::Timber(string dimension,  int totalStock, float pricePerMeter)
 {
@@ -33,7 +31,7 @@ Timber::Timber(string dimension,  int totalStock, float pricePerMeter)
 Timber::~Timber()
 {
 }
-
+/*
 Timber& Timber::operator=(const Timber& eeh)
 {
 	this->dimension = eeh.dimension;
@@ -41,6 +39,7 @@ Timber& Timber::operator=(const Timber& eeh)
 	this->pricePerMeter = eeh.pricePerMeter;
 	return *this;
 }
+*/
 
 bool Timber::operator==(const Timber& eeh)
 {

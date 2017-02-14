@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 int main() 
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -14,9 +15,9 @@ int main()
 	TimberList list(2);
 
 	//2. Lägg in 2 virken.
-	list.addTimber("2x2", 5, 4.99);
-	list.addTimber("3x3", 3, 6.99);
+	Timber timb6 = Timber("15x15", 30, 69.99);
 
+	/*
 	//3. Lägg till ytterligare ett virke(vilket ska medföra att arrayen i TimberRegister - objektet expanderar).
 	list.addTimber("4x4", 2, 7.99);
 
@@ -46,7 +47,7 @@ int main()
 	Timber timb8 = Timber(timb6);
 	timb6 = timb7; // Vi använder tilldelningsoperatorn för att skriva över timb6 med timb7...
 	
-
+	*/
 
 	getchar();
 	return 0;

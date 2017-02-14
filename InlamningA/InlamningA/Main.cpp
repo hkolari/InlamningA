@@ -118,16 +118,28 @@ int main()
 
 void showCurrentStock(TimberList *list) 
 {
-	cout << "Current stock:" << endl;
 
-	string *myString = new string();
-	list->ShowAll(myString);
-	cout << *myString << endl;
-	delete myString;
+	int stringArrLength = 0;
+	if (list->getNr() == 0) {
+		stringArrLength = 1;
+	}
+	else {
+		stringArrLength = list->getNr();
+	}
+	string *arr = new string[stringArrLength];
+	cout << "Current stock:" << endl;
+	list->getTimberAsString(arr, list->getNr());
+	for (int i = 0; i < stringArrLength; i++ ) 
+	{
+		cout << arr[i] << endl;
+	}
+	delete[] arr;
+	
 }
 
 void specificStock(TimberList *list)
 {
+	/*
 	int insertMeter = -1;
 	cout << "What is the maximal amount of meters you would like to search for?:" << endl;
 	cin >> insertMeter; cin.ignore();
@@ -135,6 +147,7 @@ void specificStock(TimberList *list)
 	list->searchFor(insertMeter, myString);
 	cout << *myString << endl;
 	delete myString;
+	*/
 }
 
 void addStock(TimberList *list)
@@ -180,7 +193,7 @@ void stockValue(TimberList *list)
 void editStock(TimberList *list)
 {
 	string insertDimension = "EMPTY";
-	int insertAmount = -1;
+	float insertAmount = -1;
 	float insertPricePerMeter = -1;
 	int insertChoice = -1;
 
