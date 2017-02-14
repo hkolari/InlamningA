@@ -15,11 +15,9 @@ private:
 
 public:
 	Timber();
-	//Timber(Timber & copy);
 	Timber(string dimension, int totalStock, float pricePerMeter);
 	~Timber();
 
-	//Timber& operator=(const Timber& eeh);
 	bool operator==(const Timber& eeh);
 	
 	string getDimension()const;
@@ -31,14 +29,7 @@ public:
 	void setPricePerMeter(float pricePerMeter);
 
 	string toString();
-
-	/*
-	Timber& operator=(const Timber& copy);
-	bool operator ==(const Timber& copy);
-
-	void showInfo;
-	void expand();
-	*/
+	string toFile();
 };
 
 #endif // !TIMBERREGISTER_H

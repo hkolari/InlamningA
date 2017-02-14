@@ -12,19 +12,13 @@ using namespace std;
 
 TimberList& TimberList::operator=(const TimberList& eeh)
 {
-	this->dimension = eeh.dimension;
-	this->totalStock = eeh.totalStock;
-	this->pricePerMeter = eeh.pricePerMeter;
 	this->capacity = eeh.capacity;
 	this->nrOfTimber = eeh.nrOfTimber;
 	return *this;
 }
 
-TimberList::TimberList(TimberList &copy)
+TimberList::TimberList(const TimberList &copy)
 {
-	this->dimension = copy.dimension;
-	this->totalStock = copy.totalStock;
-	this->pricePerMeter = copy.pricePerMeter;
 	this->capacity = copy.capacity;
 	this->nrOfTimber = copy.nrOfTimber;
 }
@@ -103,7 +97,7 @@ bool TimberList::addTimber(string dimension, int totalStock, float pricePerMeter
 		allTimber[nrOfTimber++] = new Timber(dimension, totalStock, pricePerMeter);
 	}
 		return !exists;
-		}
+	}
 
 void TimberList::expand()
 {
@@ -134,13 +128,14 @@ void TimberList::getTimberAsString(string *arr, int nrOf) const
 	}
 }
 
-void TimberList::searchFor(int meters, string *temp) const
+void TimberList::searchFor(int meters, string *arr, int nrOf) const
 {
-	for (int i = 0; i < this->nrOfTimber; i++)
+
+	for (int i = 0; i < nrOf; i++)
 	{
 		if (this->allTimber[i]->getTotalStock() == meters || this->allTimber[i]->getTotalStock() < meters)
 		{
-			*temp += allTimber[i]->toString() + "\n";
+			arr[i] = allTimber[i]->toString();
 		}
 	}
 }
@@ -223,27 +218,40 @@ void TimberList::saveFile(string fileName) const
 {
 	ofstream newFile(fileName, ios_base::app);
 	if (newFile.is_open())
+		newFile << getNr() << endl;
 	{
 		for (int i = 0; i < nrOfTimber; i++)
 		{
-			newFile << allTimber[i]->toString() << endl;
+			newFile << allTimber[i]->toFile() << endl;
 		}
 	}
 	newFile.close();
 }
 
-string TimberList::readFile(string fileName) const
+void TimberList::readFile(string fileName)
 {
-	string line;
-	string sendBack;
+	int lineOne;
 	ifstream loadFile(fileName);
 	if (loadFile.is_open())
 	{
+		loadFile >> lineOne; loadFile.ignore();
+		
+		for (int i = 0; i < lineOne; i++)
+		{
+			string dimensionFromFile = "EMPTY";
+			int amountFromFile = -1;
+			float priceFromFile = -1;
+			loadFile >> dimensionFromFile; loadFile.ignore();
+			loadFile >> amountFromFile; loadFile.ignore();
+			loadFile >> priceFromFile; loadFile.ignore();
+			addTimber(dimensionFromFile, amountFromFile, priceFromFile);
+		}
+		/*
 		while (getline (loadFile,line))
 		{
 			sendBack += line + "\n";
 		}
+		*/
 		loadFile.close();
 	}
-	return sendBack;
 }

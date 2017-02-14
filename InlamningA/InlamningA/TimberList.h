@@ -11,15 +11,12 @@ class TimberList
 {
 private:
 	Timber** allTimber;
-	string dimension;
-	int totalStock;
-	float pricePerMeter;
 
 	int capacity;
 	int nrOfTimber;
 
 public:
-	TimberList(TimberList & copy);
+	TimberList(const TimberList & copy);
 	TimberList& operator=(const TimberList& eeh);
 
 	int getCapacity()const;
@@ -31,12 +28,12 @@ public:
 	void ShowAll(string *temp) const;
 	bool removeTimber(string dimension);
 	bool doesItExist(string dimension) const;
-	void searchFor(int meters, string *temp) const;
+	void searchFor(int meters, string *arr, int nrOf) const;
 	float totalSummary() const;
 	bool TimberList::editContent(string dimension, float value, int whichOne);
 
 	void TimberList::saveFile(string fileName) const;
-	string TimberList::readFile(string fileName) const;
+	void TimberList::readFile(string fileName);
 
 
 	~TimberList();

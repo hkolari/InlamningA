@@ -83,6 +83,12 @@ void Timber::setPricePerMeter(float pricePerMeter)
 	this->pricePerMeter = pricePerMeter;
 }
 
-string Timber::toString() {
+string Timber::toString() 
+{
 	return dimension + " meter | " + to_string(totalStock) + " meters in stock | " + to_string(pricePerMeter) + "sek per meter";
+}
+
+string Timber::toFile()
+{
+	return dimension + "\n" + to_string(totalStock) + "\n" + to_string(pricePerMeter);
 }

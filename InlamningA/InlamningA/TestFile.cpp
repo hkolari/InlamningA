@@ -15,7 +15,8 @@ int main()
 	TimberList list(2);
 
 	//2. Lägg in 2 virken.
-	Timber timb6 = Timber("15x15", 30, 69.99);
+	list.addTimber("2x2", 2, 2.22);
+	list.addTimber("3x3", 3, 3.33);
 
 	/*
 	//3. Lägg till ytterligare ett virke(vilket ska medföra att arrayen i TimberRegister - objektet expanderar).

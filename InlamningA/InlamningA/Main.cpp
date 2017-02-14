@@ -15,6 +15,8 @@ void addStock(TimberList *list);
 void removeFromStock(TimberList *list);
 void stockValue(TimberList *list);
 void editStock(TimberList *list);
+void saveToFile(TimberList *list);
+void loadFromFile(TimberList *list);
 
 int main()
 {
@@ -25,14 +27,6 @@ int main()
 
 	while (continueOrNot == 0)
 	{
-		string insertDimension = "EMPTY";
-		int insertAmount = -1;
-		float insertPricePerMeter = -1;
-		int insertMeter = -1;
-		string fileName = "EMPTY";
-		int insertChoice = -1;
-
-
 		cout << "-----------------------" << endl;
 		cout << "Welcome to TimberStore!" << endl;
 		cout << "Select an option" << endl << endl;
@@ -84,17 +78,13 @@ int main()
 
 		case 7:
 		{
-			cout << "What would you like to name the file to (remember to insert file's format)?: " << endl;
-			cin >> fileName; cin.ignore();
-			list.saveFile(fileName);
+			saveToFile(&list);
 			break;
 		}
 
 		case 8:
 		{
-			cout << "What would you like read/search (remember to insert file's format)?: " << endl;
-			cin >> fileName; cin.ignore();
-			cout << list.readFile(fileName) << endl;
+			loadFromFile(&list);
 			break;
 		}
 
@@ -139,15 +129,24 @@ void showCurrentStock(TimberList *list)
 
 void specificStock(TimberList *list)
 {
-	/*
-	int insertMeter = -1;
+	int meters = 0;
 	cout << "What is the maximal amount of meters you would like to search for?:" << endl;
-	cin >> insertMeter; cin.ignore();
-	string *myString = new string();
-	list->searchFor(insertMeter, myString);
-	cout << *myString << endl;
-	delete myString;
-	*/
+	cin >> meters; cin.ignore();
+	int stringArrLength = 0;
+	if (list->getNr() == 0) {
+		stringArrLength = 1;
+	}
+	else {
+		stringArrLength = list->getNr();
+	}
+	string *arr = new string[stringArrLength];
+	cout << "Current stock:" << endl;
+	list->searchFor(meters, arr, list->getNr());
+	for (int i = 0; i < stringArrLength; i++)
+	{
+		cout << arr[i] << endl;
+	}
+	delete[] arr;
 }
 
 void addStock(TimberList *list)
@@ -223,4 +222,20 @@ void editStock(TimberList *list)
 		cout << "Unable to find dimension." << endl;
 	}
 
+}
+
+void saveToFile(TimberList *list)
+{
+	string fileName = "EMPTY";
+	cout << "What would you like to name the file to (remember to insert file's format)?: " << endl;
+	cin >> fileName; cin.ignore();
+	list->saveFile(fileName);
+}
+
+void loadFromFile(TimberList *list)
+{
+	string fileName = "EMPTY";
+	cout << "What would you like read/search (remember to insert file's format)?: " << endl;
+	cin >> fileName; cin.ignore();
+	list->readFile(fileName);
 }
