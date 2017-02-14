@@ -23,10 +23,8 @@ Timber::Timber(Timber &copy)
 	this->pricePerMeter = copy.pricePerMeter;
 }
 
-Timber::Timber(int width, int length, string dimension,  int totalStock, float pricePerMeter)
+Timber::Timber(string dimension,  int totalStock, float pricePerMeter)
 {
-	this->width = width;
-	this->length = length;
 	this->dimension = dimension;
 	this->totalStock = totalStock;
 	this->pricePerMeter = pricePerMeter;
@@ -38,8 +36,6 @@ Timber::~Timber()
 
 Timber& Timber::operator=(const Timber& eeh)
 {
-	this->width = eeh.width;
-	this->length = eeh.length;
 	this->dimension = eeh.dimension;
 	this->totalStock = eeh.totalStock;
 	this->pricePerMeter = eeh.pricePerMeter;
@@ -48,47 +44,29 @@ Timber& Timber::operator=(const Timber& eeh)
 
 bool Timber::operator==(const Timber& eeh)
 {
-	return (this->width == eeh.width) && (this->length == eeh.length) && (this->dimension == eeh.dimension) && (this->totalStock == eeh.totalStock) && (this->pricePerMeter == eeh.pricePerMeter);
+	return (this->dimension == eeh.dimension);
 }
 
+/*
 bool Timber::operator<(const Timber& eeh)
 {
-	return (this->width * this->length == eeh.width * eeh.length);
+	
 }
+*/
 
-int Timber::getWidth()
-{
-	return width;
-}
-
-int Timber::getLength()
-{
-	return length;
-}
-
-string Timber::getDimension()
+string Timber::getDimension() const
 {
 	return dimension;
 }
 
-int Timber::getTotalStock()
+int Timber::getTotalStock() const
 {
 	return totalStock;
 }
 
-float Timber::getPricePerMeter()
+float Timber::getPricePerMeter() const
 {
 	return pricePerMeter;
-}
-
-void Timber::setWidth(int width)
-{
-	this->width = width;
-}
-
-void Timber::setLength(int length)
-{
-	this->length = length;
 }
 
 void Timber::SetDimension(string dimension)

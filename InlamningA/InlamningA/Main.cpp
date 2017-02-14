@@ -5,8 +5,16 @@
 #include "TimberList.h"
 #include "TimberRegister.h"
 #include <crtdbg.h>
+#include "Main.h"
 
 using namespace std;
+
+void showCurrentStock(TimberList *list);
+void specificStock(TimberList *list);
+void addStock(TimberList *list);
+void removeFromStock(TimberList *list);
+void stockValue(TimberList *list);
+void editStock(TimberList *list);
 
 int main()
 {
@@ -17,8 +25,6 @@ int main()
 
 	while (continueOrNot == 0)
 	{
-		int insertWidth = -1;
-		int insertLength = -1;
 		string insertDimension = "EMPTY";
 		int insertAmount = -1;
 		float insertPricePerMeter = -1;
@@ -46,88 +52,33 @@ int main()
 		{
 		case 1:
 		{
-			int stop = 0;
-			cout << "Current stock:" << endl;
-			cout << list.ShowAll() << endl;
+			showCurrentStock(&list);
 			break;
 		}
 		case 2:
 		{
-			cout << "Please insert the timber's width: " << endl;
-			cin >> insertWidth; cin.ignore();
-			cout << "Please insert the timber's length: " << endl;
-			cin >> insertLength; cin.ignore();
-			//Dimension
-			insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
-
-			if (list.doesItExist(insertDimension) == true)
-			{
-				cout << "Duplicate found, try again" << endl;
-				break;
-			}
-			cout << "Please insert amount of meters that will be added to stock: " << endl;
-			cin >> insertAmount; cin.ignore();
-			cout << "Please insert the price per meter (You can use decimals): " << endl;
-			cin >> insertPricePerMeter; cin.ignore();
-			list.addTimber(insertWidth, insertLength, insertDimension, insertAmount, insertPricePerMeter);
+			addStock(&list);
 			break;
 		}
 		case 3:
 		{
-			cout << "Please insert the dimension width:" << endl;
-			cin >> insertWidth; cin.ignore();
-			cout << "Please insert the dimension length :" << endl;
-			cin >> insertLength; cin.ignore();
-
-			insertDimension = to_string(insertWidth) + "x" + to_string(insertLength);
-
-			if (list.doesItExist(insertDimension) == true)
-			{
-				list.removeTimber(insertDimension);
-			}
+			removeFromStock(&list);
 			break;
 		}
 		case 4:
 		{
-			cout << "What is the maximal amount of meters you would like to search for?:" << endl;
-			cin >> insertMeter; cin.ignore();
-			cout << list.searchFor(insertMeter) << endl;
+			specificStock(&list);
 			break;
 		}
 		case 5:
 		{
-			cout << "Total value of your whole stock is: " << list.totalSummary() << "sek" << endl;
+			stockValue(&list);
 			break;
 		}
 
 		case 6:
 		{
-			cout << "What dimension is the item you want to edit? (example. 6x6, 5x7 or 10x2)" << endl;
-			cin >> insertDimension; cin.ignore();
-			if (list.doesItExist(insertDimension) == true)
-			{
-				cout << "What would you like to edit?" << endl;
-				cout << "1.Amount of meter in stock" << endl;
-				cout << "2.Price per meter" << endl;
-				cin >> insertChoice; cin.ignore();
-				if (insertChoice == 1)
-				{
-					cout << "What would you like to change the amount of meter in stock to?:" << endl;
-					cin >> insertAmount; cin.ignore();
-					list.editContent(insertDimension, insertAmount, insertChoice);
-				}
-				if (insertChoice == 2)
-				{
-					cout << "What would you like to change the price per meter to?:" << endl;
-					cin >> insertPricePerMeter; cin.ignore();
-					list.editContent(insertDimension, insertPricePerMeter, insertChoice);
-				}
-			}
-			else
-			{
-				cout << "Unable to find dimension." << endl;
-			}
-			
+			editStock(&list);
 			break;
 		}
 
@@ -162,4 +113,101 @@ int main()
 	}
 	getchar();
 	return 0;
+}
+
+
+void showCurrentStock(TimberList *list) 
+{
+	cout << "Current stock:" << endl;
+
+	string *myString = new string();
+	list->ShowAll(myString);
+	cout << *myString << endl;
+	delete myString;
+}
+
+void specificStock(TimberList *list)
+{
+	int insertMeter = -1;
+	cout << "What is the maximal amount of meters you would like to search for?:" << endl;
+	cin >> insertMeter; cin.ignore();
+	string *myString = new string();
+	list->searchFor(insertMeter, myString);
+	cout << *myString << endl;
+	delete myString;
+}
+
+void addStock(TimberList *list)
+{
+	string insertDimension = "EMPTY";
+	int insertAmount = -1;
+	float insertPricePerMeter = -1;
+
+	cout << "Please insert the timber's dimension (example 10x5): " << endl;
+	cin >> insertDimension; cin.ignore();
+
+	if (list->doesItExist(insertDimension) == true)
+	{
+		cout << "Duplicate found, try again" << endl;
+	}
+	else
+	{
+		cout << "Please insert amount of meters that will be added to stock: " << endl;
+		cin >> insertAmount; cin.ignore();
+		cout << "Please insert the price per meter (You can use decimals): " << endl;
+		cin >> insertPricePerMeter; cin.ignore();
+		list->addTimber(insertDimension, insertAmount, insertPricePerMeter);
+	}
+}
+
+void removeFromStock(TimberList *list)
+{
+	string insertDimension = "EMPTY";
+	cout << "Please insert the dimension (example 10x5): " << endl;
+	cin >> insertDimension; cin.ignore();
+
+	if (list->doesItExist(insertDimension) == true)
+	{
+		list->removeTimber(insertDimension);
+	}
+}
+
+void stockValue(TimberList *list)
+{
+	cout << "Total value of your whole stock is: " << list->totalSummary() << "sek" << endl;
+}
+
+void editStock(TimberList *list)
+{
+	string insertDimension = "EMPTY";
+	int insertAmount = -1;
+	float insertPricePerMeter = -1;
+	int insertChoice = -1;
+
+	cout << "What dimension is the item you want to edit? (example. 6x6, 5x7 or 10x2)" << endl;
+	cin >> insertDimension; cin.ignore();
+	if (list->doesItExist(insertDimension) == true)
+	{
+		cout << "What would you like to edit?" << endl;
+		cout << "1.Amount of meter in stock" << endl;
+		cout << "2.Price per meter" << endl;
+		cin >> insertChoice; cin.ignore();
+		if (insertChoice == 1)
+		{
+			cout << "What would you like to change the amount of meter in stock to?:" << endl;
+			cin >> insertAmount; cin.ignore();
+			list->editContent(insertDimension, insertAmount, insertChoice);
+		}
+		if (insertChoice == 2)
+		{
+			cout << "What would you like to change the price per meter to?:" << endl;
+			cin >> insertPricePerMeter; cin.ignore();
+			list->editContent(insertDimension, insertPricePerMeter, insertChoice);
+		}
+	}
+	else
+	{
+		cout << "Unable to find dimension." << endl;
+	}
+
 }

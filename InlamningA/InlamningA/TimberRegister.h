@@ -18,21 +18,16 @@ private:
 public:
 	Timber();
 	Timber(Timber & copy);
-	Timber(int width, int length, string dimension, int totalStock, float pricePerMeter);
+	Timber(string dimension, int totalStock, float pricePerMeter);
 	~Timber();
 
 	Timber& operator=(const Timber& eeh);
 	bool operator==(const Timber& eeh);
-	bool operator<(const Timber& eeh);
 	
-	int getWidth();
-	int getLength();
-	string getDimension();
-	int getTotalStock();
-	float getPricePerMeter();
+	string getDimension()const;
+	int getTotalStock()const;
+	float getPricePerMeter()const;
 
-	void setWidth(int width);
-	void setLength(int length);
 	void SetDimension(string dimension);
 	void setTotalStock(int totalStock);
 	void setPricePerMeter(float pricePerMeter);

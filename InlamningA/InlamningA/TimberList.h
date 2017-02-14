@@ -23,11 +23,11 @@ private:
 public:
 	TimberList();
 	TimberList(int capacity);
-	bool addTimber(int width, int length, string dimension, int totalStock, float pricePerMeter);
-	string ShowAll() const;
+	bool addTimber(string dimension, int totalStock, float pricePerMeter);
+	void ShowAll(string *temp) const;
 	bool removeTimber(string dimension);
 	bool doesItExist(string dimension) const;
-	string searchFor(int meters) const;
+	void searchFor(int meters, string *temp) const;
 	float totalSummary() const;
 	bool TimberList::editContent(string dimension, float value, int whichOne);
 

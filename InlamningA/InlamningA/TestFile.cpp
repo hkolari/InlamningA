@@ -14,11 +14,11 @@ int main()
 	TimberList list(2);
 
 	//2. Lägg in 2 virken.
-	list.addTimber(2, 2, "2x2", 5, 4.99);
-	list.addTimber(3, 3, "3x3", 3, 6.99);
+	list.addTimber("2x2", 5, 4.99);
+	list.addTimber("3x3", 3, 6.99);
 
 	//3. Lägg till ytterligare ett virke(vilket ska medföra att arrayen i TimberRegister - objektet expanderar).
-	list.addTimber(4, 4, "4x4", 2, 7.99);
+	list.addTimber("4x4", 2, 7.99);
 
 	//4. Försök ta bort ett virke som inte finns inlagt och kontrollera att ingen borttagning gjordes samt generera en utskrift av detta.
 	list.removeTimber("5x5");
@@ -35,14 +35,14 @@ int main()
 	list.removeTimber("3x3");
 
 	//7. Lägg till 2 nya virken till TimberRegister - objektet och kontrollera att dessa finns inlagda.
-	list.addTimber(9, 9, "8x8", 12, 10.99);
-	list.addTimber(9, 9, "9x9", 78, 12.99);
+	list.addTimber("8x8", 12, 10.99);
+	list.addTimber("9x9", 78, 12.99);
 	cout << "The list below should not contain '2x2' or '3x3' anymore" << endl;
 
 	//8. Testa på lämpligt sätt kopieringskonstruktor(copykonstruktor) och tilldelningsoperator. 
 	//Avsluta programmet och kontrollera slutligen att inga minnesläckor upptäckts!
-	Timber timb6 = Timber(15, 15, "15x15", 30, 69.99);
-	Timber timb7 = Timber(18, 18, "18x18", 20, 99.99);
+	Timber timb6 = Timber("15x15", 30, 69.99);
+	Timber timb7 = Timber("18x18", 20, 99.99);
 	Timber timb8 = Timber(timb6);
 	timb6 = timb7; // Vi använder tilldelningsoperatorn för att skriva över timb6 med timb7...
 	
