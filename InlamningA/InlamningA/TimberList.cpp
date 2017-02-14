@@ -10,6 +10,8 @@
 
 using namespace std;
 
+//TODO: DEEP COPYING
+
 TimberList& TimberList::operator=(const TimberList& eeh)
 {
 	this->capacity = eeh.capacity;
@@ -21,6 +23,12 @@ TimberList::TimberList(const TimberList &copy)
 {
 	this->capacity = copy.capacity;
 	this->nrOfTimber = copy.nrOfTimber;
+}
+
+TimberList& TimberList::operator==(const TimberList& eeh)
+{
+	//TODO:
+	return *this;
 }
 
 
