@@ -12,14 +12,6 @@ Timber::Timber()
 	totalStock = -1;
 	pricePerMeter = -1;
 }
-/*
-Timber::Timber(Timber &copy)
-{
-	this->dimension = copy.dimension;
-	this->totalStock = copy.totalStock;
-	this->pricePerMeter = copy.pricePerMeter;
-}
-*/
 
 Timber::Timber(string dimension,  int totalStock, float pricePerMeter)
 {
@@ -31,27 +23,11 @@ Timber::Timber(string dimension,  int totalStock, float pricePerMeter)
 Timber::~Timber()
 {
 }
-/*
-Timber& Timber::operator=(const Timber& eeh)
-{
-	this->dimension = eeh.dimension;
-	this->totalStock = eeh.totalStock;
-	this->pricePerMeter = eeh.pricePerMeter;
-	return *this;
-}
-*/
 
-bool Timber::operator==(const Timber& eeh)
+bool Timber::operator==(const Timber& eeh) const
 {
 	return (this->dimension == eeh.dimension);
 }
-
-/*
-bool Timber::operator<(const Timber& eeh)
-{
-	
-}
-*/
 
 string Timber::getDimension() const
 {
@@ -83,12 +59,12 @@ void Timber::setPricePerMeter(float pricePerMeter)
 	this->pricePerMeter = pricePerMeter;
 }
 
-string Timber::toString() 
+string Timber::toString() const
 {
 	return dimension + " meter | " + to_string(totalStock) + " meters in stock | " + to_string(pricePerMeter) + "sek per meter";
 }
 
-string Timber::toFile()
+string Timber::toFile() const
 {
 	return dimension + "\n" + to_string(totalStock) + "\n" + to_string(pricePerMeter);
 }

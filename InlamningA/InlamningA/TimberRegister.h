@@ -18,7 +18,7 @@ public:
 	Timber(string dimension, int totalStock, float pricePerMeter);
 	~Timber();
 
-	bool operator==(const Timber& eeh);
+	bool operator==(const Timber& eeh) const;
 	
 	string getDimension()const;
 	int getTotalStock()const;
@@ -28,8 +28,8 @@ public:
 	void setTotalStock(int totalStock);
 	void setPricePerMeter(float pricePerMeter);
 
-	string toString();
-	string toFile();
+	string toString() const;
+	string toFile() const;
 };
 
 #endif // !TIMBERREGISTER_H

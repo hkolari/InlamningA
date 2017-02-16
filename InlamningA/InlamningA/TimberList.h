@@ -18,7 +18,6 @@ private:
 public:
 	TimberList(const TimberList & copy);
 	TimberList& operator=(const TimberList& eeh);
-	TimberList& operator==(const TimberList& eeh);
 
 	int getCapacity()const;
 	int getNr()const;

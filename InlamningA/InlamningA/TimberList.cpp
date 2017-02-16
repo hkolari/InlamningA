@@ -1,35 +1,63 @@
 //Written by Henry Kolari (heko16 - 199712038430)
 
 #include "TimberList.h"
-#include "TimberRegister.h"
-#include <string>
 #include <fstream>
 #include <iostream>
-#include <array>
-#include <fstream>
-
-using namespace std;
 
 //TODO: DEEP COPYING
 
 TimberList& TimberList::operator=(const TimberList& eeh)
 {
-	this->capacity = eeh.capacity;
-	this->nrOfTimber = eeh.nrOfTimber;
+	if (this != &eeh) {
+
+		
+
+		for (int i = 0; i < this->nrOfTimber; i++) {
+			delete this->allTimber[i];
+		}
+		delete[] this->allTimber;
+
+
+		this->capacity = eeh.capacity;
+		this->nrOfTimber = eeh.nrOfTimber;
+
+
+		this->allTimber = new Timber*[eeh.capacity];
+
+		for (int i = 0; i < eeh.nrOfTimber; i++)
+		{
+			//this->allTimber[i] = new Timber();
+			//*this->allTimber[i] = *eeh.allTimber[i];
+
+			this->allTimber[i] = new Timber(*eeh.allTimber[i]);
+		}
+
+		
+	}
+
 	return *this;
 }
 
 TimberList::TimberList(const TimberList &copy)
 {
+	
+	
 	this->capacity = copy.capacity;
 	this->nrOfTimber = copy.nrOfTimber;
+
+	this->allTimber = new Timber*[copy.capacity];
+	 
+	for (int i = 0; i < copy.nrOfTimber; i++)
+	{
+		this->allTimber[i] = new Timber(*copy.allTimber[i]);
+		//*this->allTimber[i] = *copy.allTimber[i];
+	}
+	
+
+	
 }
 
-TimberList& TimberList::operator==(const TimberList& eeh)
-{
-	//TODO:
-	return *this;
-}
+
 
 
 int TimberList::getCapacity() const
@@ -71,11 +99,12 @@ TimberList::TimberList(int capacity)
 
 TimberList::~TimberList()
 {
-	for (int i = 0; i < nrOfTimber; i++)
+	for (int i = 0; i < this->nrOfTimber; i++)
 	{
-		delete allTimber[i];
+		delete this->allTimber[i];
 	}
-	delete[] allTimber;
+	
+	delete[] this->allTimber;
 }
 
 
@@ -92,20 +121,23 @@ bool TimberList::addTimber(string dimension, int totalStock, float pricePerMeter
 		this->expand();
 	}
 
-	Timber temp(dimension, totalStock, pricePerMeter);
+//	Timber(dimension, totalStock, pricePerMeter);
 	for (int i = 0; i < nrOfTimber && !exists; i++)
 	{
-		if (temp == *allTimber[i])
+		if (Timber(dimension, totalStock, pricePerMeter) == *this->allTimber[i])
 		{
 			exists = true;
 		}
 	}
+
 	if (!exists)
 	{
-		allTimber[nrOfTimber++] = new Timber(dimension, totalStock, pricePerMeter);
+		this->allTimber[this->nrOfTimber] = new Timber(dimension, totalStock, pricePerMeter);
+		this->nrOfTimber++;
 	}
-		return !exists;
-	}
+
+	return !exists;
+}
 
 void TimberList::expand()
 {
@@ -116,7 +148,7 @@ void TimberList::expand()
 		temp[i] = allTimber[i];
 	}
 	delete[] allTimber;
-	allTimber = temp;
+	this->allTimber = temp;
 	temp = nullptr;
 }
 
@@ -165,6 +197,7 @@ bool TimberList::removeTimber(string dimension)
 			// 
 			Timber *myTimber = new Timber();
 			allTimber[nrOfTimber - 1] = myTimber;
+			
 			delete myTimber;
 			
 			removed = true;
@@ -254,12 +287,6 @@ void TimberList::readFile(string fileName)
 			loadFile >> priceFromFile; loadFile.ignore();
 			addTimber(dimensionFromFile, amountFromFile, priceFromFile);
 		}
-		/*
-		while (getline (loadFile,line))
-		{
-			sendBack += line + "\n";
-		}
-		*/
 		loadFile.close();
 	}
 }
